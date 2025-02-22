@@ -36,54 +36,76 @@ export default function Stat() {
     return (
         <div className="container mx-auto p-6">
             <h1
-                className="mb-8 text-center text-4xl font-extrabold text-blue-700"
+                className="mb-6 text-center text-3xl font-semibold text-gray-800"
                 style={{ fontFamily: 'Poppins, sans-serif' }}
             >
-                Rules for Max
+                Manage Rules
             </h1>
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {rules.map((rule) => (
                     <div
                         key={rule.id}
-                        className="relative transform overflow-hidden rounded-xl bg-white p-6 shadow-lg transition duration-300 hover:scale-105 hover:shadow-2xl"
+                        className="relative overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md transition-shadow hover:shadow-lg"
                     >
-                        <div className="flex items-start justify-between">
+                        <div className="px-6 py-5">
                             <div>
-                                <h3 className="mb-2 text-xl font-semibold text-blue-600">
+                                {' '}
+                                {/* No more flex here in the header */}
+                                <h3 className="mb-1 text-lg font-semibold text-gray-800">
                                     {rule?.name}
                                 </h3>
-                                <p className="mb-4 text-sm text-gray-600">
+                                <p className="line-clamp-2 text-sm text-gray-500">
                                     {rule?.description}
                                 </p>
                             </div>
-                            <div className="flex space-x-3">
-                                <FontAwesomeIcon
-                                    icon={faEdit}
-                                    className="cursor-pointer text-blue-500 transition duration-300 hover:text-blue-700"
-                                    onClick={() => handleEdit(rule)}
-                                    size="lg"
-                                />
-                                <FontAwesomeIcon
-                                    icon={faTrash}
-                                    className="cursor-pointer text-red-500 transition duration-300 hover:text-red-700"
-                                    onClick={() => handleDelete(rule)}
-                                    size="lg"
-                                />
-                            </div>
                         </div>
-                        <div className="mt-5 flex items-center justify-between">
-                            <span className="text-sm font-medium text-gray-700">
-                                Enabled
-                            </span>
-                            <label className="relative inline-flex cursor-pointer items-center">
-                                <input
-                                    type="checkbox"
-                                    checked={rule.enabled}
-                                    onChange={() => handleToggle(rule)}
-                                    className="peer sr-only"
-                                />
-                                <div className="h-6 w-11 rounded-full bg-gray-300 after:absolute after:left-[2px] after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-blue-300"></div>
-                            </label>
+                        <div className="flex items-center justify-between border-t border-gray-200 px-6 py-4">
+                            {' '}
+                            {/* Flex container for bottom section */}
+                            <div className="flex items-center">
+                                {' '}
+                                {/* Grouping "Enabled" and toggle */}
+                                <span className="mr-2 text-sm font-medium text-gray-700">
+                                    {' '}
+                                    {/* Added margin-right for spacing */}
+                                    Enabled
+                                </span>
+                                <label className="relative inline-flex cursor-pointer items-center">
+                                    <input
+                                        type="checkbox"
+                                        checked={rule.enabled}
+                                        onChange={() => handleToggle(rule)}
+                                        className="peer sr-only"
+                                    />
+                                    <div className="peer h-5 w-9 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-4 after:w-4 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
+                                </label>
+                            </div>
+                            <div className="flex space-x-2">
+                                {' '}
+                                {/* Icons on the right side */}
+                                <button
+                                    onClick={() => handleEdit(rule)}
+                                    className="rounded-md p-2 transition-colors hover:bg-gray-100"
+                                    aria-label="Edit"
+                                >
+                                    <FontAwesomeIcon
+                                        icon={faEdit}
+                                        className="text-gray-500 hover:text-gray-700"
+                                        size="sm"
+                                    />
+                                </button>
+                                <button
+                                    onClick={() => handleDelete(rule)}
+                                    className="rounded-md p-2 transition-colors hover:bg-gray-100"
+                                    aria-label="Delete"
+                                >
+                                    <FontAwesomeIcon
+                                        icon={faTrash}
+                                        className="text-gray-500 hover:text-gray-700"
+                                        size="sm"
+                                    />
+                                </button>
+                            </div>
                         </div>
                     </div>
                 ))}
