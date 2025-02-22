@@ -4,9 +4,8 @@ import { Button } from '../components/ui/button';
 import { AudioLines, Send } from 'lucide-react';
 import { AddNewRule } from '@/lib/admin/data';
 import { Chat } from '@/lib/types';
-import ChatBubble from '@/components/ChatBubble';
-import { DotLoader } from 'react-spinners';
 import ChatList from '@/components/ChatList';
+import IntroCard from '@/components/IntroCard';
 
 export default function ChatPage() {
     const [inputValue, setInputValue] = useState<string>('');
@@ -43,6 +42,7 @@ export default function ChatPage() {
 
     return (
         <div className="flex grow flex-col overflow-hidden">
+            {chats.length === 0 && <IntroCard />}
             <ChatList chats={chats} isPending={mutation.isPending} />
             <form
                 onSubmit={handleSubmit}
