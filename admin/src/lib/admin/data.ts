@@ -5,7 +5,6 @@ import { openai } from '../util/init';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { z } from 'zod';
 import { zodResponseFormat } from 'openai/helpers/zod';
-import { getCurrentUser } from '../user/userManager';
 import { Rule } from '../util/model';
 
 const db = getFirestore();
@@ -53,8 +52,6 @@ export async function AddNewRule(query: string) {
     if (!result) {
         throw new Error('Failed to generate rule');
     }
-
-    // const user = await getCurrentUser();
 
     const rulesCollection = collection(db, 'rules');
 
