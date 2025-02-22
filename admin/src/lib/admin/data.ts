@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getFirestore } from 'firebase/firestore';
 import { openai } from '../util/init';
 
@@ -52,11 +53,12 @@ export async function AddNewRule(query: string) {
         throw new Error('Failed to generate rule');
     }
 
-    const user = await getCurrentUser();
+    // const user = await getCurrentUser();
 
     const rulesCollection = collection(db, 'rules');
 
     const rulesData = {
+        userID: 'sRJis8S0RVC68dti8pg7',
         name: result.name,
         description: result.description,
         blockedWords: result.blockedWords,

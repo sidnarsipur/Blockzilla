@@ -1,18 +1,52 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
 import { Button } from '../components/ui/button';
 import { AudioLines, Send } from 'lucide-react';
+import { AddNewRule } from '@/lib/admin/data';
+import { Chat } from '@/lib/types';
+import ChatBubble from '@/components/ChatBubble';
 
-export default function Chat() {
+export default function ChatPage() {
     const [inputValue, setInputValue] = useState<string>('');
+    const [chats, setChats] = useState<Chat[]>([]);
+
+    // Use TanStack Query's useMutation to handle the async function
+    const mutation = useMutation({
+        mutationFn: (query: string) => AddNewRule(query),
+        onSuccess: (res) => {
+            console.log(res);
+            const newChat = {
+                message: res.response,
+                isUser: false,
+            };
+            setChats((chats) => [...chats, newChat]);
+        },
+        onError: (error) => {
+            alert(`Error adding rule: ${error.message}`);
+        },
+    });
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Submitted:', inputValue);
-        // Here you would typically send the input to an API or handle it as needed
+        if (inputValue.trim()) {
+            const newChat = {
+                message: inputValue,
+                isUser: true,
+            };
+            setChats((chats) => [...chats, newChat]);
+            setInputValue(''); // Clear input after success
+            mutation.mutate(inputValue); // Call the mutation with the input value
+        }
     };
 
     return (
         <div className="flex grow flex-col">
+            <div className="flex flex-col gap-3 p-5">
+                {chats.map((chat, idx) => (
+                    <ChatBubble key={idx} chat={chat} />
+                ))}
+            </div>
+            {mutation.isPending && <p>loading...</p>}
             <form
                 onSubmit={handleSubmit}
                 className="mt-auto flex w-full flex-row items-center gap-2 p-5"
@@ -24,11 +58,12 @@ export default function Chat() {
                         onChange={(e) => setInputValue(e.target.value)}
                         placeholder="Please help me with..."
                         className="flex-1 rounded-l-lg p-3 focus:outline-none"
+                        disabled={mutation.isPending}
                     />
                     <Button
                         variant="ghost"
                         size="icon"
-                        className="rounded-full"
+                        disabled={mutation.isPending}
                     >
                         <AudioLines />
                     </Button>
@@ -37,7 +72,7 @@ export default function Chat() {
                     type="submit"
                     variant="outline"
                     size="round-icon"
-                    className="color-white bg-blue-600"
+                    className="color-whit"
                 >
                     <Send />
                 </Button>
