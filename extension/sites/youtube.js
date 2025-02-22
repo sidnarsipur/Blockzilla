@@ -62,13 +62,19 @@ class YouTubeBlocker {
         // Replace thumbnail section
         const thumbnailSection = container.querySelector("#thumbnail");
         if (thumbnailSection) {
-            // Remove video length badge - updated selector
-            thumbnailSection.querySelectorAll("ytd-thumbnail-overlay-time-status-renderer")
-                .forEach(badge => badge.remove());
+            // Remove all timestamp-related elements
+            const timestampSelectors = [
+                "ytd-thumbnail-overlay-time-status-renderer",
+                ".thumbnail-overlay-badge-shape",
+                ".badge-shape-wiz--thumbnail-badge",
+                "#time-status"
+            ];
 
-            // Alternative approach if the above doesn't work
-            thumbnailSection.querySelectorAll("[overlay-style='TIME_STATUS']")
-                .forEach(badge => badge.remove());
+            timestampSelectors.forEach(selector => {
+                thumbnailSection.querySelectorAll(selector).forEach(element => {
+                    element.remove();
+                });
+            });
 
             // Replace images
             thumbnailSection.querySelectorAll("img").forEach(img => {
@@ -93,7 +99,7 @@ class YouTubeBlocker {
             `;
 
             const blockedDiv = document.createElement('div');
-            blockedDiv.textContent = "Removed By AI BLOCK";
+            blockedDiv.textContent = CONFIG.blockedText;
             blockedDiv.style.cssText = CONFIG.blockedTextStyle;
 
             // Adjust position based on view type
