@@ -2,7 +2,13 @@
 import { getFirestore } from 'firebase/firestore';
 import { openai } from '../util/init';
 
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+import {
+    collection,
+    addDoc,
+    deleteDoc,
+    getDocs,
+    doc,
+} from 'firebase/firestore';
 import { z } from 'zod';
 import { zodResponseFormat } from 'openai/helpers/zod';
 import { Rule } from '../util/model';
@@ -69,6 +75,12 @@ export async function AddNewRule(query: string) {
     }
 
     return result;
+}
+
+export async function DeleteRule(ruleID: string) {
+    const ruleRef = doc(db, 'rules', ruleID);
+
+    await deleteDoc(ruleRef);
 }
 
 export async function GetRules() {
