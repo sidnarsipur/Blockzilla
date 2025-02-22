@@ -14,7 +14,7 @@ type Tab = {
 
 const tabs: Tab[] = [
     {
-        name: 'Stat',
+        name: 'Rules',
         path: '/stat',
         icon: <BarChart size={24} />,
         page: <StatPage />,
