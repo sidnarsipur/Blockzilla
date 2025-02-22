@@ -6,6 +6,7 @@ import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { z } from 'zod';
 import { zodResponseFormat } from 'openai/helpers/zod';
 import { getCurrentUser } from '../user/userManager';
+import { Rule } from '../util/model';
 
 const db = getFirestore();
 
@@ -71,6 +72,27 @@ export async function AddNewRule(query: string) {
     }
 
     return result;
+}
+
+export async function GetRules() {
+    const rules: Rule[] = [];
+
+    const rulesSnapshot = await getDocs(collection(db, 'rules'));
+
+    rulesSnapshot.forEach((rule: any) => {
+        const ruleData = rule.data();
+
+        const ruleModel: Rule = {
+            userID: ruleData.userID,
+            id: rule.id,
+            name: ruleData.name,
+            description: ruleData.description,
+            blockedWords: ruleData.blockedWords,
+        };
+        rules.push(ruleModel);
+    });
+
+    return rules;
 }
 
 export async function GetBlockedWords() {
