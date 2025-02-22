@@ -34,22 +34,21 @@ export default function Stat() {
     };
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="container mx-auto overflow-scroll p-6">
             <h1
                 className="mb-6 text-center text-3xl font-semibold text-gray-800"
                 style={{ fontFamily: 'Poppins, sans-serif' }}
             >
                 Manage Rules
             </h1>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="flex flex-col gap-6">
                 {rules.map((rule) => (
                     <div
                         key={rule.id}
-                        className="relative overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md transition-shadow hover:shadow-lg"
+                        className="rounded-lg border border-gray-200 bg-white shadow-md transition-shadow hover:shadow-lg"
                     >
                         <div className="px-6 py-5">
                             <div>
-                                {' '}
                                 {/* No more flex here in the header */}
                                 <h3 className="mb-1 text-lg font-semibold text-gray-800">
                                     {rule?.name}
@@ -77,7 +76,7 @@ export default function Stat() {
                                         onChange={() => handleToggle(rule)}
                                         className="peer sr-only"
                                     />
-                                    <div className="peer h-5 w-9 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-4 after:w-4 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
+                                    <div className="peer h-5 w-9 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-4 after:w-4 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
                                 </label>
                             </div>
                             <div className="flex space-x-2">

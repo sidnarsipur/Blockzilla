@@ -28,7 +28,8 @@ export async function AddNewRule(query: string) {
     Once you are given a rule, you need to generate the following
     1. A name for the rule. The name should be short, descriptive, and easy to remember.
     2. A one-sentence description of the rule.
-    3. A list of words that should be blocked by the rule. Be comphrensive and include as many words as possible.
+    3. A list of words that should be blocked by the rule. Be comphrensive and include as many words as possible, think of all the kinds of variations of the query, 
+    words related to the query and such. Include subwords, and related words. Adding more words to be cautious is better than adding fewer words.
     4. A response to the parent, which is a helpful message that confirms the addition of the rule to the system.`;
 
     const completion = await openai.chat.completions.create({

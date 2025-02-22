@@ -19,26 +19,26 @@ export default function IntroCard() {
                 What can I help you with today?
             </p>
 
-            <div className="grid w-full max-w-md grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="grid w-full max-w-md grid-cols-2 gap-4">
                 <FeatureCard
                     icon={ShieldCheck}
                     title="Block Websites"
-                    description="Easily block harmful or distracting websites."
+                    description="Block unsafe or distracting sites"
                 />
                 <FeatureCard
                     icon={Globe}
                     title="Safe Browsing"
-                    description="Get recommendations for kid-friendly sites."
+                    description="Find kid-friendly websites"
                 />
                 <FeatureCard
                     icon={EyeOff}
                     title="Monitor Access"
-                    description="Track and control website access effortlessly."
+                    description="Monitor and manage online access"
                 />
                 <FeatureCard
                     icon={MessageSquare}
                     title="AI Assistance"
-                    description="Ask anything about online safety and restrictions."
+                    description="Get online safety tips and tricks"
                 />
             </div>
         </div>
@@ -51,7 +51,7 @@ const FeatureCard: FC<FeatureCardProps> = ({
     description,
 }) => {
     return (
-        <div className="flex items-center gap-4 rounded-2xl bg-gray-100 p-4 shadow-sm transition">
+        <div className="flex flex-col items-center gap-4 rounded-2xl bg-gray-100 p-4 shadow-sm transition">
             <Icon className="h-8 w-8 text-blue-600" />
             <div>
                 <h3 className="text-lg font-semibold">{title}</h3>
