@@ -2,10 +2,15 @@
 import { getFirestore } from 'firebase/firestore';
 import { openai } from '../util/init';
 
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+import {
+    collection,
+    addDoc,
+    deleteDoc,
+    getDocs,
+    doc,
+} from 'firebase/firestore';
 import { z } from 'zod';
 import { zodResponseFormat } from 'openai/helpers/zod';
-import { getCurrentUser } from '../user/userManager';
 import { Rule } from '../util/model';
 
 const db = getFirestore();
@@ -54,12 +59,11 @@ export async function AddNewRule(query: string) {
         throw new Error('Failed to generate rule');
     }
 
-    // const user = await getCurrentUser();
-
     const rulesCollection = collection(db, 'rules');
 
     const rulesData = {
         userID: 'sRJis8S0RVC68dti8pg7',
+        enabled: true,
         name: result.name,
         description: result.description,
         blockedWords: result.blockedWords,
@@ -74,6 +78,12 @@ export async function AddNewRule(query: string) {
     return result;
 }
 
+export async function DeleteRule(ruleID: string) {
+    const ruleRef = doc(db, 'rules', ruleID);
+
+    await deleteDoc(ruleRef);
+}
+
 export async function GetRules() {
     const rules: Rule[] = [];
 
@@ -86,6 +96,7 @@ export async function GetRules() {
             userID: ruleData.userID,
             id: rule.id,
             name: ruleData.name,
+            enabled: ruleData.enabled,
             description: ruleData.description,
             blockedWords: ruleData.blockedWords,
         };

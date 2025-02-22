@@ -9,5 +9,6 @@ export interface Rule {
     userID: string;
     name: string;
     description: string;
+    enabled: boolean;
     blockedWords: string[];
 }
