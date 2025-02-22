@@ -3,15 +3,21 @@
 	"name": "Content Blocker",
 	"version": "1.0",
 	"description": "Blocks content containing specific keywords",
-	"permissions": ["activeTab"],
+	"permissions": [
+	  "activeTab"
+	],
 	"content_scripts": [
-		{
-			"matches": [
-				"https://*.youtube.com/*",
-				"https://*.reddit.com/*",
-				"https://*.twitter.com/*"
-			],
-			"js": ["content.js"]
-		}
+	  {
+		"matches": ["https://*.youtube.com/*"],
+		"js": ["config.js", "utils.js", "sites/youtube.js"]
+	  },
+	  {
+		"matches": ["https://*.twitter.com/*"],
+		"js": ["config.js", "utils.js", "sites/twitter.js"]
+	  },
+	  {
+		"matches": ["https://*.reddit.com/*"],
+		"js": ["config.js", "utils.js", "sites/reddit.js"]
+	  }
 	]
-}
+  }
