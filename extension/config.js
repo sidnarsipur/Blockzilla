@@ -1,7 +1,7 @@
 const CONFIG = {
-    blockedWords: ["office", "spam", "unwanted", "CS2"],
+    blockedWords: ["office", "spam", "unwanted", "CS2", "pope", "trump"],
     blockedImageUrl: "https://placehold.co/480x360?text=Blocked",
-    blockedIconUrl: "https://placehold.co/48x48?text=Blocked",
+    blockedText: "Blocked by AI Block",
     blockedTextStyle: `
         font-family: Roboto, sans-serif;
         font-size: 24px;
