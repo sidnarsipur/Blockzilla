@@ -1,4 +1,4 @@
-const blockedWords = ["office", "spam", "unwanted"];
+const blockedWords = ["office", "spam", "unwanted", "SNL"];
 const BLOCKED_IMAGE_URL = "https://placehold.co/480x360?text=Blocked";
 const BLOCKED_ICON_URL = "https://placehold.co/48x48?text=Blocked";
 
