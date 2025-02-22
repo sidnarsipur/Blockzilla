@@ -1,4 +1,4 @@
-import { MessageCircle, BarChart, Settings } from 'lucide-react';
+import { MessageCircle, BarChart, Settings, Siren, Laptop } from 'lucide-react';
 import { JSX, useState } from 'react';
 import clsx from 'clsx';
 import StatPage from './pages/Stat';
@@ -24,6 +24,18 @@ const tabs: Tab[] = [
         path: '/chat',
         icon: <MessageCircle size={24} />,
         page: <ChatPage />,
+    },
+    {
+        name: 'Devices',
+        path: '/settings',
+        icon: <Laptop size={24} />,
+        page: <SettingsPage />,
+    },
+    {
+        name: 'Alerts',
+        path: '/settings',
+        icon: <Siren size={24} />,
+        page: <SettingsPage />,
     },
     {
         name: 'Settings',
