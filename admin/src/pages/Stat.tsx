@@ -35,10 +35,7 @@ export default function Stat() {
 
     return (
         <div className="container mx-auto overflow-scroll p-6">
-            <h1
-                className="mb-6 text-center text-3xl font-semibold text-gray-800"
-                style={{ fontFamily: 'Poppins, sans-serif' }}
-            >
+            <h1 className="mb-6 text-center text-3xl font-semibold text-gray-800">
                 Manage Rules
             </h1>
             <div className="flex flex-col gap-6">

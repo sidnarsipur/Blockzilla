@@ -6,10 +6,11 @@ import { AddNewRule } from '@/lib/admin/data';
 import { Chat } from '@/lib/types';
 import ChatList from '@/components/ChatList';
 import IntroCard from '@/components/IntroCard';
+import { useChatStore } from '@/store/chats';
 
 export default function ChatPage() {
     const [inputValue, setInputValue] = useState<string>('');
-    const [chats, setChats] = useState<Chat[]>([]);
+    const addChat = useChatStore((store) => store.addChat);
 
     // Use TanStack Query's useMutation to handle the async function
     const mutation = useMutation({
@@ -20,7 +21,7 @@ export default function ChatPage() {
                 message: res.response,
                 isUser: false,
             };
-            setChats((chats) => [...chats, newChat]);
+            addChat(newChat);
         },
         onError: (error) => {
             alert(`Error adding rule: ${error.message}`);
@@ -34,7 +35,7 @@ export default function ChatPage() {
                 message: inputValue,
                 isUser: true,
             };
-            setChats((chats) => [...chats, newChat]);
+            addChat(newChat);
             setInputValue(''); // Clear input after success
             mutation.mutate(inputValue); // Call the mutation with the input value
         }
@@ -42,11 +43,10 @@ export default function ChatPage() {
 
     return (
         <div className="flex grow flex-col overflow-hidden">
-            {chats.length === 0 && <IntroCard />}
-            <ChatList chats={chats} isPending={mutation.isPending} />
+            <ChatList isPending={mutation.isPending} />
             <form
                 onSubmit={handleSubmit}
-                className="mt-auto flex w-full flex-row items-center gap-2 p-5"
+                className="mt-auto flex w-full flex-row items-center gap-2 rounded-tl-xl rounded-tr-xl p-3"
             >
                 <div className="flex grow items-center rounded-lg border border-gray-300 bg-white shadow-sm focus-within:ring-2 focus-within:ring-blue-500 focus:outline-none">
                     <input
