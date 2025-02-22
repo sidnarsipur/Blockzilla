@@ -18,16 +18,11 @@ export default function ChatBubble({ chat }: { chat: Chat }) {
 
     return (
         <div
-            className={`flex ${chat.isUser ? 'justify-end' : 'justify-start'}`}
+            className={`flex ${chat.isUser ? 'justify-end' : 'justify-start'} `}
         >
             <div
-                className={`max-w-xs rounded-2xl p-3 text-white shadow-md md:max-w-sm ${
-                    chat.isUser
-                        ? 'rounded-br-none bg-blue-700'
-                        : 'rounded-bl-none bg-green-700'
-                }`}
+                className={`relative max-w-md rounded-xl px-4 py-3 text-gray-900 shadow-lg md:max-w-lg ${chat.isUser ? 'rounded-br-none bg-blue-200' : 'rounded-bl-none bg-green-200'}`}
             >
-                {/* {animatedText} */}
                 {chat.message}
             </div>
         </div>

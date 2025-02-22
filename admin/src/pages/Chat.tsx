@@ -10,23 +10,7 @@ import ChatList from '@/components/ChatList';
 
 export default function ChatPage() {
     const [inputValue, setInputValue] = useState<string>('');
-    const [chats, setChats] = useState<Chat[]>([
-        {
-            message:
-                ' be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in',
-            isUser: false,
-        },
-        {
-            message:
-                ' be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in',
-            isUser: false,
-        },
-        {
-            message:
-                ' be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in',
-            isUser: false,
-        },
-    ]);
+    const [chats, setChats] = useState<Chat[]>([]);
 
     // Use TanStack Query's useMutation to handle the async function
     const mutation = useMutation({

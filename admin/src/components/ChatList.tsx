@@ -17,7 +17,7 @@ export default function ChatList({ chats, isPending }: Props) {
     }, [chats]);
 
     return (
-        <div className="flex flex-col gap-3 overflow-y-scroll p-5">
+        <div className="scrollbar-hide flex flex-col gap-5 overflow-y-scroll p-6">
             {chats.map((chat, idx) => (
                 <ChatBubble key={idx} chat={chat} />
             ))}
