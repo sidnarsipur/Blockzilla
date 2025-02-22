@@ -6,7 +6,6 @@ import { useChatStore } from '@/store/chats';
 import IntroCard from './IntroCard';
 
 interface Props {
-    chats: Chat[];
     isPending: boolean;
 }
 
