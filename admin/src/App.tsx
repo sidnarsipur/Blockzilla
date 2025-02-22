@@ -36,9 +36,9 @@ const tabs: Tab[] = [
 export default function BottomTabNavigation() {
     const [tabIdx, setTabIdx] = useState(1);
     return (
-        <>
+        <div className="flex h-full w-full flex-col">
             {tabs[tabIdx].page}
-            <nav className="fixed bottom-0 left-0 flex w-full justify-around border-t bg-white py-2 shadow-md">
+            <nav className="mt-auto flex w-full justify-around border-t bg-white py-2 shadow-md">
                 {tabs.map((tab, idx) => (
                     <div
                         key={idx}
@@ -53,6 +53,6 @@ export default function BottomTabNavigation() {
                     </div>
                 ))}
             </nav>
-        </>
+        </div>
     );
 }
