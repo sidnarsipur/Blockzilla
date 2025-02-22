@@ -63,6 +63,7 @@ export async function AddNewRule(query: string) {
 
     const rulesData = {
         userID: 'sRJis8S0RVC68dti8pg7',
+        enabled: true,
         name: result.name,
         description: result.description,
         blockedWords: result.blockedWords,
@@ -95,6 +96,7 @@ export async function GetRules() {
             userID: ruleData.userID,
             id: rule.id,
             name: ruleData.name,
+            enabled: ruleData.enabled,
             description: ruleData.description,
             blockedWords: ruleData.blockedWords,
         };
