@@ -34,22 +34,21 @@ export default function Stat() {
     };
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="container mx-auto overflow-hidden p-6">
             <h1
                 className="mb-6 text-center text-3xl font-semibold text-gray-800"
                 style={{ fontFamily: 'Poppins, sans-serif' }}
             >
                 Manage Rules
             </h1>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="flex flex-col gap-6 overflow-y-scroll">
                 {rules.map((rule) => (
                     <div
                         key={rule.id}
-                        className="relative overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md transition-shadow hover:shadow-lg"
+                        className="rounded-lg border border-gray-200 bg-white shadow-md transition-shadow hover:shadow-lg"
                     >
                         <div className="px-6 py-5">
                             <div>
-                                {' '}
                                 {/* No more flex here in the header */}
                                 <h3 className="mb-1 text-lg font-semibold text-gray-800">
                                     {rule?.name}
