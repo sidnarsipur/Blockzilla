@@ -5,10 +5,28 @@ import { AudioLines, Send } from 'lucide-react';
 import { AddNewRule } from '@/lib/admin/data';
 import { Chat } from '@/lib/types';
 import ChatBubble from '@/components/ChatBubble';
+import { DotLoader } from 'react-spinners';
+import ChatList from '@/components/ChatList';
 
 export default function ChatPage() {
     const [inputValue, setInputValue] = useState<string>('');
-    const [chats, setChats] = useState<Chat[]>([]);
+    const [chats, setChats] = useState<Chat[]>([
+        {
+            message:
+                ' be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in',
+            isUser: false,
+        },
+        {
+            message:
+                ' be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in',
+            isUser: false,
+        },
+        {
+            message:
+                ' be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in be number or string. When number, unit is assumed as px. When string, a unit is expected to be passed in',
+            isUser: false,
+        },
+    ]);
 
     // Use TanStack Query's useMutation to handle the async function
     const mutation = useMutation({
@@ -40,13 +58,8 @@ export default function ChatPage() {
     };
 
     return (
-        <div className="flex grow flex-col">
-            <div className="flex flex-col gap-3 p-5">
-                {chats.map((chat, idx) => (
-                    <ChatBubble key={idx} chat={chat} />
-                ))}
-            </div>
-            {mutation.isPending && <p>loading...</p>}
+        <div className="flex grow flex-col overflow-hidden">
+            <ChatList chats={chats} isPending={mutation.isPending} />
             <form
                 onSubmit={handleSubmit}
                 className="mt-auto flex w-full flex-row items-center gap-2 p-5"
