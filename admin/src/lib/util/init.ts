@@ -13,9 +13,9 @@ const firebaseConfig = {
     measurementId: 'G-KPC8RTS8Q0',
 };
 
-const app = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
-const openai = new OpenAI({ apiKey: import.meta.env.OPENAI_API_KEY });
+const openAIKey = import.meta.env.VITE_OPENAI_API_KEY;
+const openai = new OpenAI({ apiKey: openAIKey, dangerouslyAllowBrowser: true });
 
-export { db, openai };
+export { openai };

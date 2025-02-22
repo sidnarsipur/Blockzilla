@@ -1,7 +1,9 @@
-import { db } from '../util/init';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
 import { useAuth0 } from '@auth0/auth0-react';
 import { User } from '../util/model';
+
+const db = getFirestore();
 
 export async function createUser() {
     try {
