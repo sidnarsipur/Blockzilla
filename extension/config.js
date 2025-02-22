@@ -1,6 +1,7 @@
 const CONFIG = {
     blockedWords: ["office", "spam", "unwanted", "CS2"],
     blockedImageUrl: "https://placehold.co/480x360?text=Blocked",
+    blockedIconUrl: "https://placehold.co/48x48?text=Blocked",
     blockedTextStyle: `
         font-family: Roboto, sans-serif;
         font-size: 24px;
@@ -11,5 +12,13 @@ const CONFIG = {
         background: #f8f8f8;
         border-radius: 8px;
         margin: 10px 0;
+        /* Center positioning */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        max-width: 400px;
+        z-index: 10;
     `
 };
