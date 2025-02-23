@@ -1,6 +1,5 @@
 import { streamText, useAnimatedText } from '@/hooks/useAnimatedText';
 import { Chat, Rule } from '@/lib/types';
-import { useEffect } from 'react';
 import { ThumbsUp, ThumbsDown, Download } from 'lucide-react';
 
 export default function ChatBubble({ chat }: { chat: Chat }) {
@@ -22,7 +21,7 @@ export default function ChatBubble({ chat }: { chat: Chat }) {
             className={`flex flex-col ${chat.isUser ? 'items-end' : 'items-start'}`}
         >
             <div
-                className={`relative max-w-md rounded-xl px-4 py-3 font-medium text-white md:max-w-lg ${chat.isUser ? 'ml-8 rounded-br-none bg-[#4168f6]' : 'mr-8 rounded-bl-none bg-[#33ae5a]'}`}
+                className={`relative max-w-md rounded-3xl px-4 py-3 font-medium text-white md:max-w-lg ${chat.isUser ? 'ml-8 rounded-br-none bg-[#4168f6]' : 'mr-8 rounded-bl-none bg-[#33ae5a]'}`}
             >
                 {chat.message}
             </div>
@@ -45,7 +44,7 @@ function RuleBox({ rule }: { rule?: Rule }) {
                     <Download size={14} />
                 </button>
             </div>
-            <p className="mb-2 mt-5 text-center text-gray-400">
+            <p className="mb-2 mt-6 text-center text-gray-400">
                 New Rule Added
             </p>
             <div className="mx-6 rounded-lg border border-gray-200 bg-white px-5 py-3 shadow-md transition-shadow">
