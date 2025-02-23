@@ -44,7 +44,8 @@
 			"resources/blocked-yt.html",
 			"resources/yt-grid-blur.png",
 			"resources/yt-list-blur.png",
-			"resources/blocked-image.png"
+			"resources/blocked-image.png",
+			"resources/reddit-blur.png"
 		],
         "matches": ["<all_urls>"]
     }]
