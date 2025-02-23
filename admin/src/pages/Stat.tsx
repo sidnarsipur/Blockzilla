@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import { DeleteRule, GetRules } from '../lib/admin/data';
+import { DeleteRule, GetRules, GetBlockedWordsByRule } from '../lib/admin/data';
 import { Rule } from '../lib/util/model';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function Stat() {
     const [rules, setRules] = useState<Rule[]>([]);
+    const [blockedWords, setBlockedWords] = useState<string[]>([]);
+    const [selectedRule, setSelectedRule] = useState<Rule | null>(null);
 
     useEffect(() => {
         async function fetchRules() {
@@ -16,7 +18,15 @@ export default function Stat() {
         fetchRules();
     }, []);
 
-    const handleEdit = (rule: Rule) => {
+    const handleEdit = async (rule: Rule) => {
+        if (selectedRule?.id === rule.id) {
+            setSelectedRule(null);
+            setBlockedWords([]);
+        } else {
+            const words = await GetBlockedWordsByRule(rule.id); // Pass the rule ID to fetch specific blocked words
+            setBlockedWords(words);
+            setSelectedRule(rule);
+        }
         console.log('Edit rule:', rule);
     };
 
@@ -46,7 +56,6 @@ export default function Stat() {
                     >
                         <div className="px-6 py-5">
                             <div>
-                                {/* No more flex here in the header */}
                                 <h3 className="mb-1 text-lg font-semibold text-gray-800">
                                     {rule?.name}
                                 </h3>
@@ -56,14 +65,8 @@ export default function Stat() {
                             </div>
                         </div>
                         <div className="flex items-center justify-between border-t border-gray-200 px-6 py-4">
-                            {' '}
-                            {/* Flex container for bottom section */}
                             <div className="flex items-center">
-                                {' '}
-                                {/* Grouping "Enabled" and toggle */}
                                 <span className="mr-2 text-sm font-medium text-gray-700">
-                                    {' '}
-                                    {/* Added margin-right for spacing */}
                                     Enabled
                                 </span>
                                 <label className="relative inline-flex cursor-pointer items-center">
@@ -77,8 +80,6 @@ export default function Stat() {
                                 </label>
                             </div>
                             <div className="flex space-x-2">
-                                {' '}
-                                {/* Icons on the right side */}
                                 <button
                                     onClick={() => handleEdit(rule)}
                                     className="rounded-md p-2 transition-colors hover:bg-gray-100"
@@ -106,6 +107,20 @@ export default function Stat() {
                     </div>
                 ))}
             </div>
+            {selectedRule && (
+                <div className="mt-6 rounded-lg border bg-white p-4 shadow-md">
+                    <h2 className="text-xl font-semibold text-gray-800">
+                        Blocked Words for {selectedRule.name}
+                    </h2>
+                    <ul className="mt-2 list-disc pl-5">
+                        {blockedWords.map((word, index) => (
+                            <li key={index} className="text-gray-700">
+                                {word}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
     );
 }
