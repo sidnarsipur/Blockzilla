@@ -33,7 +33,7 @@ export async function AddNewRule(query: string) {
     2. A one-sentence description of the rule.
     3. A list of words that should be blocked by the rule. Be comphrensive and include as many words as possible, think of all the kinds of variations of the query, 
     words related to the query and such. Include subwords, and related words. Adding more words to be cautious is better than adding fewer words.
-    4. A response to the parent, which is a helpful message that confirms the addition of the rule to the system.`;
+    4. Behave like a helpful friend or a child'd teacher, and give a light hearted response to the parent. Do not say thank you in the beginning. Have one sentence to confirm that the block was set in place`;
 
     const completion = await openai.chat.completions.create({
         model: 'gpt-4o-mini',
