@@ -46,13 +46,7 @@ export default function Stat() {
                     [rule.id]: {
                         startTime: rule.timeFrom || '09:00',
                         endTime: rule.timeTo || '17:00',
-                        days: [
-                            'Monday',
-                            'Tuesday',
-                            'Wednesday',
-                            'Thursday',
-                            'Friday',
-                        ],
+                        days: rule.days || [],
                     },
                 }),
                 {}
@@ -225,7 +219,10 @@ export default function Stat() {
                                             </label>
                                             <input
                                                 type="time"
-                                                value={rule.timeFrom}
+                                                value={
+                                                    timeWindows[rule.id]
+                                                        .startTime
+                                                }
                                                 onChange={(e) =>
                                                     handleTimeChange(
                                                         rule.id,
@@ -242,7 +239,9 @@ export default function Stat() {
                                             </label>
                                             <input
                                                 type="time"
-                                                value={rule.timeTo || '17:00'}
+                                                value={
+                                                    timeWindows[rule.id].endTime
+                                                }
                                                 onChange={(e) =>
                                                     handleTimeChange(
                                                         rule.id,

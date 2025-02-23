@@ -14,4 +14,5 @@ export interface Rule {
     timestamp: number;
     timeFrom: string;
     timeTo: string;
+    days: string[];
 }

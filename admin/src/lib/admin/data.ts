@@ -27,6 +27,7 @@ export async function AddNewRule(query: string) {
         response: z.string(),
         timeFrom: z.string(),
         timeTo: z.string(),
+        days: z.array(z.string()),
     });
 
     const prompt = `You are AI assistant for a company who wants to protect children browsing the web.
@@ -39,6 +40,7 @@ export async function AddNewRule(query: string) {
     4. Behave like a helpful friend or a child'd teacher, and give a light hearted response to the parent. Do not say thank you in the beginning. Have one sentence to confirm that the block was set in place
     5. TimeFrom: If mentioned in the query, the time from which the rule should be applied. If not mentioned, return 12:00 AM.
     6. TimeTo: If mentioned in the query, the time to which the rule should be applied. If not mentioned, return 11:59 PM.
+    7. days: If mentioned in the query, the days on which the rule should be applied. If not mentioned, return all days (Return as a list like Monday, Tuesday, etc..).
     The format is "HH:mm", "HH:mm:ss" or "HH:mm:ss.SSS" where HH is 00-23, mm is 00-59, ss is 00-59, and SSS is 000-999.`;
 
     const completion = await openai.chat.completions.create({
@@ -80,6 +82,7 @@ export async function AddNewRule(query: string) {
         timestamp: Date.now(),
         timeFrom: result.timeFrom,
         timeTo: result.timeTo,
+        days: result.days,
     };
 
     const ruleRef = await addDoc(rulesCollection, rulesData);
@@ -120,6 +123,7 @@ export async function GetRules() {
             timestamp: ruleData.timestamp,
             timeFrom: ruleData.timeFrom,
             timeTo: ruleData.timeTo,
+            days: ruleData.days,
         };
         rules.push(ruleModel);
     });
