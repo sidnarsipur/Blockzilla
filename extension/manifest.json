@@ -12,6 +12,10 @@
     ],
 	"content_scripts": [
 	  {
+		"matches": ["https://*.google.com/*"],
+		"js": ["config.js", "utils.js", "sites/google.js"]
+	  },
+	  {
 		"matches": ["https://*.youtube.com/*"],
 		"js": ["config.js", "utils.js", "sites/youtube.js"]
 	  },
@@ -28,7 +32,8 @@
 		"exclude_matches": [
 			"https://*.youtube.com/*",
 			"https://*.twitter.com/*",
-			"https://*.reddit.com/*"
+			"https://*.reddit.com/*",
+			"https://*.google.com/*"
 		],
 		"js": ["config.js", "utils.js", "sites/allSites.js"]
 	  }
