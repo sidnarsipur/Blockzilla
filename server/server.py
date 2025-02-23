@@ -17,7 +17,7 @@ db = firestore.client()
 @app.route("/getBlockedWords", methods=["GET", "OPTIONS"])
 def get_blocked_words():
     blocked_words = []
-    rules_ref = db.collection("rules").where(filter=("enabled", "==", True))
+    rules_ref = db.collection("rules")
     rules = rules_ref.stream()
 
     for rule in rules:
