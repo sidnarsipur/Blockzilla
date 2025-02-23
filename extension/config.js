@@ -1,6 +1,6 @@
 const CONFIG = {
     blockedWords: [],  // Will be populated from server
-    blockedImageUrl: "https://i.ibb.co/bgSw8GWj/plfu8-T65-VY.png",
+    blockedImageUrl: chrome.runtime.getURL('resources/blocked-image.png'),
     blockedText: "This content isn’t available, but let's try something else!",
     blockedTextStyle: `
         font-family: Roboto, sans-serif;
@@ -28,16 +28,16 @@ async function updateBlockedWords() {
             },
             mode: 'cors'
         });
-        
+
         if (!response.ok) {
             console.error('Server response:', response.status, response.statusText);
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        
+
         const words = await response.json();
         console.log('Successfully fetched words:', words);
         CONFIG.blockedWords = words;
-        
+
         // Store in chrome.storage.local
         chrome.storage.local.set({ blockedWords: words }, () => {
             if (chrome.runtime.lastError) {

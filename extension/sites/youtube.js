@@ -14,13 +14,13 @@ class YouTubeBlocker {
         const titleElement = document.querySelector('h1.ytd-video-primary-info-renderer');
         const descriptionElement = document.querySelector('#description-inline-expander');
         const commentsSection = document.querySelector('#comments');
-        
+
         if (titleElement) {
             const titleText = titleElement.textContent;
             const descriptionText = descriptionElement ? descriptionElement.textContent : '';
-            
+
             // Check title and description
-            if (ContentBlockerUtils.containsBlockedWord(titleText) || 
+            if (ContentBlockerUtils.containsBlockedWord(titleText) ||
                 ContentBlockerUtils.containsBlockedWord(descriptionText)) {
                 this.redirectToBlockedPage();
                 return;
@@ -30,7 +30,7 @@ class YouTubeBlocker {
             if (commentsSection) {
                 const commentTexts = Array.from(commentsSection.querySelectorAll('#content-text'))
                     .map(comment => comment.textContent);
-                
+
                 for (const commentText of commentTexts) {
                     if (ContentBlockerUtils.containsBlockedWord(commentText)) {
                         this.redirectToBlockedPage();
@@ -120,9 +120,9 @@ class YouTubeBlocker {
 
             // Replace images
             thumbnailSection.querySelectorAll("img").forEach(img => {
-                img.style.boxSizing="border-box";
-                img.style.borderRadius="15px";
-                img.style.border="2px solid #ccc";
+                img.style.boxSizing = "border-box";
+                img.style.borderRadius = "15px";
+                img.style.border = "2px solid #ccc";
                 ContentBlockerUtils.replaceImageSources(img, CONFIG.blockedImageUrl);
             });
         }
@@ -133,20 +133,58 @@ class YouTubeBlocker {
 
         if (detailsSection || textWrapper) {
             const targetElement = detailsSection || textWrapper;
+            const thumbnailHeight = container.querySelector("#thumbnail")?.offsetHeight || 200;
 
             // Create wrapper for better positioning
             const wrapper = document.createElement('div');
             wrapper.style.cssText = `
                 position: relative;
                 width: 100%;
-                height: 100%;
-                min-height: ${textWrapper ? '150px' : '100px'};
+                height: ${textWrapper ? `${thumbnailHeight}px` : '120px'};  // Specific height for list/grid view
+                min-height: ${textWrapper ? `${thumbnailHeight}px` : '100px'};
+                overflow: hidden;
+                border-radius: 12px;
+                margin: ${textWrapper ? 'auto 0' : '8px 0'};  // Different margin for list/grid view
             `;
 
+            // Create blurred background content
+            const blurredContent = document.createElement('div');
+            const blurImageUrl = chrome.runtime.getURL(
+                textWrapper ? 'resources/yt-list-blur.png' : 'resources/yt-grid-blur.png'
+            );
+            blurredContent.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url('${blurImageUrl}');
+                background-size: cover;
+                background-position: center;
+                border-radius: 12px;
+            `;
+
+            // Create blocked message overlay
             const blockedDiv = document.createElement('div');
             blockedDiv.textContent = CONFIG.blockedText;
-            blockedDiv.style.cssText = CONFIG.blockedTextStyle;
+            blockedDiv.style.cssText = `
+                ${CONFIG.blockedTextStyle}
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: #1a1a1a;
+                text-shadow: 0 2px 4px rgba(255, 255, 255, 0.7);
+                font-family: 'YouTube Sans', 'Roboto', sans-serif;
+                font-size: 2.5rem;
+                font-weight: 600;
+                letter-spacing: 0.2px;
+                max-width: 85%;
+                z-index: 2;
+                text-align: center;
+            `;
 
+            wrapper.appendChild(blurredContent);
             wrapper.appendChild(blockedDiv);
             targetElement.innerHTML = '';
             targetElement.appendChild(wrapper);
