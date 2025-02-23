@@ -11,6 +11,7 @@ import {
     orderBy,
     getDoc,
     doc,
+    updateDoc,
 } from 'firebase/firestore';
 import { z } from 'zod';
 import { zodResponseFormat } from 'openai/helpers/zod';
@@ -139,4 +140,11 @@ export async function GetBlockedWordsByRule(ruleID: string) {
     }
 
     return blockedWords;
+}
+
+export async function UpdateEnabledRule(ruleID: string, enabled: boolean) {
+    const ruleRef = doc(db, 'rules', ruleID);
+    await updateDoc(ruleRef, {
+        enabled,
+    });
 }

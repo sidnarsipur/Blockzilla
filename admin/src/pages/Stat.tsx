@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
-import { DeleteRule, GetRules, GetBlockedWordsByRule } from '../lib/admin/data';
+import {
+    DeleteRule,
+    GetRules,
+    GetBlockedWordsByRule,
+    UpdateEnabledRule,
+} from '../lib/admin/data';
 import { Rule } from '../lib/util/model';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash, faClock } from '@fortawesome/free-solid-svg-icons';
@@ -74,11 +79,12 @@ export default function Stat() {
         setRules((prevRules) => prevRules.filter((r) => r.id !== rule.id));
     };
 
-    const handleToggle = (rule: Rule) => {
-        const updatedRules = rules.map((r) =>
-            r.id === rule.id ? { ...r, enabled: !r.enabled } : r
+    const handleToggle = async (rule: Rule) => {
+        const updatedRule = { ...rule, enabled: !rule.enabled };
+        await UpdateEnabledRule(updatedRule.id, updatedRule.enabled);
+        setRules((prevRules) =>
+            prevRules.map((r) => (r.id === rule.id ? updatedRule : r))
         );
-        setRules(updatedRules);
     };
 
     const handleShowTimeWindow = (ruleId: string) => {
