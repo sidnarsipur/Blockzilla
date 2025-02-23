@@ -39,13 +39,13 @@ export default function Stat() {
             const fetchedRules = await GetRules();
             setRules(fetchedRules);
 
-            // Initialize time windows for each rule
+            // Initialize time windows using timeTo and timeFrom from the rules
             const initialTimeWindows = fetchedRules.reduce(
                 (acc, rule) => ({
                     ...acc,
                     [rule.id]: {
-                        startTime: '09:00',
-                        endTime: '17:00',
+                        startTime: rule.timeFrom || '09:00',
+                        endTime: rule.timeTo || '17:00',
                         days: [
                             'Monday',
                             'Tuesday',
@@ -225,10 +225,7 @@ export default function Stat() {
                                             </label>
                                             <input
                                                 type="time"
-                                                value={
-                                                    timeWindows[rule.id]
-                                                        .startTime
-                                                }
+                                                value={rule.timeFrom}
                                                 onChange={(e) =>
                                                     handleTimeChange(
                                                         rule.id,
@@ -245,9 +242,7 @@ export default function Stat() {
                                             </label>
                                             <input
                                                 type="time"
-                                                value={
-                                                    timeWindows[rule.id].endTime
-                                                }
+                                                value={rule.timeTo || '17:00'}
                                                 onChange={(e) =>
                                                     handleTimeChange(
                                                         rule.id,
