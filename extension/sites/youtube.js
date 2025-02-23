@@ -1,6 +1,48 @@
 class YouTubeBlocker {
     static checkAndReplaceContent() {
-        // Handle both grid view and list view
+        // Check if we're on a video page
+        if (window.location.pathname === '/watch') {
+            this.checkVideoPage();
+        } else {
+            // Handle homepage and search results
+            this.checkGridContent();
+        }
+    }
+
+    static async checkVideoPage() {
+        // Get video title
+        const titleElement = document.querySelector('h1.ytd-video-primary-info-renderer');
+        const descriptionElement = document.querySelector('#description-inline-expander');
+        const commentsSection = document.querySelector('#comments');
+        
+        if (titleElement) {
+            const titleText = titleElement.textContent;
+            const descriptionText = descriptionElement ? descriptionElement.textContent : '';
+            
+            // Check title and description
+            if (ContentBlockerUtils.containsBlockedWord(titleText) || 
+                ContentBlockerUtils.containsBlockedWord(descriptionText)) {
+                this.redirectToBlockedPage();
+                return;
+            }
+
+            // Check comments if they exist
+            if (commentsSection) {
+                const commentTexts = Array.from(commentsSection.querySelectorAll('#content-text'))
+                    .map(comment => comment.textContent);
+                
+                for (const commentText of commentTexts) {
+                    if (ContentBlockerUtils.containsBlockedWord(commentText)) {
+                        this.redirectToBlockedPage();
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    static checkGridContent() {
+        // Code for homepage and search results
         const videoContainers = document.querySelectorAll(
             "ytd-rich-grid-media, ytd-video-renderer"
         );
@@ -146,6 +188,12 @@ class YouTubeBlocker {
             videoTitle.style.pointerEvents = 'none';
             videoTitle.querySelector('yt-formatted-string').textContent = 'Content Blocked';
         }
+    }
+
+    static redirectToBlockedPage() {
+        // Get the extension's blocked.html URL
+        const blockedPageURL = chrome.runtime.getURL('resources/blocked-yt.html');
+        window.location.href = blockedPageURL;
     }
 }
 
