@@ -7,6 +7,7 @@ import {
     addDoc,
     deleteDoc,
     getDocs,
+    getDoc,
     doc,
 } from 'firebase/firestore';
 import { z } from 'zod';
@@ -115,6 +116,18 @@ export async function GetBlockedWords() {
     rulesSnapshot.forEach((rule: any) => {
         blockedWords.push(...rule.data().blockedWords);
     });
+
+    return blockedWords;
+}
+
+export async function GetBlockedWordsByRule(ruleID: string) {
+    const blockedWords: string[] = [];
+
+    const ruleSnapshot = await getDoc(doc(db, 'rules', ruleID));
+
+    if (ruleSnapshot.exists()) {
+        blockedWords.push(...ruleSnapshot.data().blockedWords);
+    }
 
     return blockedWords;
 }
