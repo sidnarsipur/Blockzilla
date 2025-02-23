@@ -1,22 +1,14 @@
 const CONFIG = {
     blockedWords: [],  // Will be populated from server
-    blockedImageUrl: "https://placehold.co/480x360?text=Blocked",
-    blockedText: "Blocked by AI Block",
+    blockedImageUrl: "https://i.ibb.co/bgSw8GWj/plfu8-T65-VY.png",
+    blockedText: "This content isn’t available, but let's try something else!",
     blockedTextStyle: `
         font-family: Roboto, sans-serif;
-        font-size: 24px;
+        font-size: 1.875rem;
         font-weight: bold;
-        color: #ff4444;
         text-align: center;
-        padding: 20px;
-        background: #f8f8f8;
         border-radius: 8px;
-        margin: 10px 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 80%;
+        width: 100%;
         max-width: 400px;
         z-index: 10;
     `

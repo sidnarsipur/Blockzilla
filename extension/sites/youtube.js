@@ -120,6 +120,9 @@ class YouTubeBlocker {
 
             // Replace images
             thumbnailSection.querySelectorAll("img").forEach(img => {
+                img.style.boxSizing="border-box";
+                img.style.borderRadius="15px";
+                img.style.border="2px solid #ccc";
                 ContentBlockerUtils.replaceImageSources(img, CONFIG.blockedImageUrl);
             });
         }
@@ -143,12 +146,6 @@ class YouTubeBlocker {
             const blockedDiv = document.createElement('div');
             blockedDiv.textContent = CONFIG.blockedText;
             blockedDiv.style.cssText = CONFIG.blockedTextStyle;
-
-            // Adjust position based on view type
-            if (textWrapper) {
-                blockedDiv.style.width = '60%';
-                blockedDiv.style.maxWidth = '300px';
-            }
 
             wrapper.appendChild(blockedDiv);
             targetElement.innerHTML = '';
