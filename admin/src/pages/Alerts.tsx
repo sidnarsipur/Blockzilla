@@ -22,7 +22,7 @@ export default function Alerts() {
                 Monitor online activities and requests.
             </p>
 
-            <div className="mb-6 grid w-full max-w-md grid-cols-3 gap-4">
+            <div className="mb-6 grid w-full max-w-md grid-cols-3 gap-2">
                 <CountCard icon={AlertCircle} title="Alerts" count={5} />
                 <CountCard icon={Clock} title="Time Online" count={42} />
                 <CountCard icon={Unlock} title="Unblock Requests" count={8} />
@@ -55,8 +55,8 @@ const CountCard: FC<CountCardProps> = ({ icon: Icon, title, count }) => {
     return (
         <div className="flex flex-col items-center gap-2 rounded-2xl bg-gray-100 p-4 shadow-sm transition">
             <Icon className="h-8 w-8 text-blue-600" />
-            <h3 className="text-lg font-semibold">{title}</h3>
-            <p className="text-xl font-bold text-gray-700">{count}</p>
+            <h3 className="text-md font-semibold">{title}</h3>
+            <p className="mt-auto text-lg font-medium text-gray-700">{count}</p>
         </div>
     );
 };
