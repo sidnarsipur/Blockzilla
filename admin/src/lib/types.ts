@@ -7,4 +7,7 @@ export interface Chat {
 export interface Rule {
     name: string;
     description: string;
+    timeFrom: string;
+    timeTo: string;
+    days: string[];
 }

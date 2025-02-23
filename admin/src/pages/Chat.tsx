@@ -18,10 +18,7 @@ export default function ChatPage() {
             const newChat = {
                 message: res.response,
                 isUser: false,
-                rule: {
-                    name: res.name,
-                    description: res.description,
-                },
+                rule: res,
             };
             addChat(newChat);
         },
