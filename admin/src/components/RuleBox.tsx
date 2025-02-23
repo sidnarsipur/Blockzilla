@@ -1,5 +1,5 @@
 import { Rule } from '@/lib/types';
-import { ThumbsUp, ThumbsDown, Download } from 'lucide-react';
+import { ThumbsUp, ThumbsDown, Star, Share } from 'lucide-react';
 
 const formatTime = (time: string) => {
     const [hours, minutes] = time.split(':').map(Number);
@@ -29,7 +29,10 @@ export default function RuleBox({ rule }: { rule: Rule }) {
                     <ThumbsDown size={14} />
                 </button>
                 <button className="hover:text-gray-200">
-                    <Download size={14} />
+                    <Share size={14} />
+                </button>
+                <button className="hover:text-gray-200">
+                    <Star size={14} />
                 </button>
             </div>
             <p className="mb-2 mt-6 text-center text-gray-400">
