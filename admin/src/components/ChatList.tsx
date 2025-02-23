@@ -23,7 +23,7 @@ export default function ChatList({ isPending }: Props) {
     return (
         <>
             <div className="flex flex-row items-center justify-between px-6 py-4 text-lg font-medium text-gray-500">
-                <p>AI Blocker</p>
+                <p>Blockzilla</p>
                 <Settings2 />
             </div>
             <div className="scrollbar-hide flex flex-col gap-6 overflow-y-scroll p-6 pt-0">

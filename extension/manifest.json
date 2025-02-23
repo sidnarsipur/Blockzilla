@@ -1,6 +1,6 @@
 {
 	"manifest_version": 3,
-	"name": "AI Block",
+	"name": "Blockzilla",
 	"version": "1.0",
 	"description": "Blocks content containing specific keywords",
 	"permissions": [

@@ -13,7 +13,7 @@ export default function IntroCard() {
     return (
         <div className="flex h-full flex-col items-center justify-center p-6 text-center">
             <h1 className="mb-2 text-3xl font-bold">
-                Welcome to <span className="text-blue-600">AI Block</span>
+                Welcome to <span className="text-blue-600">Blockzilla</span>
             </h1>
             <p className="mb-6 text-gray-600">
                 What can I help you with today?

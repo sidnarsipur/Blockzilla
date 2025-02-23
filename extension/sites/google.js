@@ -40,7 +40,7 @@ class GoogleBlocker {
             padding: 20px;
             box-sizing: border-box;
         `;
-        blocker.textContent = 'Blocked by AI Block';
+        blocker.textContent = 'Blocked by Blockzilla';
 
         // Replace the search result with our blocker
         resultElement.innerHTML = '';
