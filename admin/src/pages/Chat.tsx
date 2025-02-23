@@ -3,9 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 import { Button } from '../components/ui/button';
 import { AudioLines, Send } from 'lucide-react';
 import { AddNewRule } from '@/lib/admin/data';
-import { Chat } from '@/lib/types';
 import ChatList from '@/components/ChatList';
-import IntroCard from '@/components/IntroCard';
 import { useChatStore } from '@/store/chats';
 
 export default function ChatPage() {
@@ -20,6 +18,10 @@ export default function ChatPage() {
             const newChat = {
                 message: res.response,
                 isUser: false,
+                rule: {
+                    name: res.name,
+                    description: res.description,
+                },
             };
             addChat(newChat);
         },
@@ -70,6 +72,9 @@ export default function ChatPage() {
                     variant="outline"
                     size="round-icon"
                     className="color-whit"
+                    disabled={
+                        inputValue.trim().length === 0 || mutation.isPending
+                    }
                 >
                     <Send />
                 </Button>
