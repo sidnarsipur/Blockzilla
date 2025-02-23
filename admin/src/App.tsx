@@ -4,6 +4,8 @@ import clsx from 'clsx';
 import StatPage from './pages/Stat';
 import ChatPage from './pages/Chat';
 import SettingsPage from './pages/Settings';
+import Devices from './pages/Devices';
+import Alerts from './pages/Alerts';
 
 type Tab = {
     name: string;
@@ -27,15 +29,15 @@ const tabs: Tab[] = [
     },
     {
         name: 'Devices',
-        path: '/settings',
+        path: '/devices',
         icon: <Laptop size={24} />,
-        page: <SettingsPage />,
+        page: <Devices />,
     },
     {
         name: 'Alerts',
-        path: '/settings',
+        path: '/alerts',
         icon: <Siren size={24} />,
-        page: <SettingsPage />,
+        page: <Alerts />,
     },
     {
         name: 'Settings',

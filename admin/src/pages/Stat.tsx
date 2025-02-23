@@ -118,8 +118,8 @@ export default function Stat() {
 
     return (
         <div className="container mx-auto overflow-scroll p-6">
-            <h1 className="mb-6 text-center text-3xl font-semibold text-gray-800">
-                Manage Rules
+            <h1 className="mb-6 text-center text-3xl font-bold">
+                Manage <span className="text-blue-600">Rules</span>
             </h1>
             <div className="flex flex-col gap-6">
                 {rules.map((rule) => (
