@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Content Blocked - Blockzilla</title>
+    <title>Oops! Page Blocked</title>
     <style>
         body {
-            background-color: #f9f9f9;
-            font-family: 'Roboto', sans-serif;
+            background-color: #f0f8ff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,49 +16,55 @@
         .blocked-container {
             text-align: center;
             padding: 40px;
-            background: white;
+            background: #fff3cd;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             max-width: 600px;
             width: 90%;
+            border: 5px dashed #ffcc00;
         }
         h1 {
-            color: #ff4444;
+            color: #008b8b;
             margin-bottom: 20px;
             font-size: 2.5em;
         }
-        .icon {
-            font-size: 64px;
-            margin-bottom: 20px;
+        .image-container {
+            margin: 20px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
         }
         .message {
             font-size: 1.2em;
             line-height: 1.6;
-            color: #666;
+            color: #555;
             margin-bottom: 30px;
         }
         .back-button {
             display: inline-block;
             padding: 12px 24px;
-            background-color: #ff4444;
+            background-color: #32cd32;
             color: white;
             text-decoration: none;
-            border-radius: 6px;
+            border-radius: 20px;
             font-weight: bold;
             transition: background-color 0.2s;
         }
         .back-button:hover {
-            background-color: #ff2222;
+            background-color: #2eb82e;
         }
     </style>
 </head>
 <body>
     <div class="blocked-container">
-        <div class="icon">🚫</div>
-        <h1>Access Blocked</h1>
+        <h1>Oops! Page Blocked</h1>
         <div class="message">
-            <p>This website contains content that matches your block list.</p>
-            <p>The page has been blocked for your protection.</p>
+            <p>Sorry, this content is not available right now, but let's try something else!</p>
+        </div>
+        <div class="image-container">
+            <img src="https://i.ibb.co/cS4HkRDb/blocked-page.png" alt="Blocked Content">
         </div>
         <a href="javascript:history.back()" class="back-button">Go Back</a>
     </div>
