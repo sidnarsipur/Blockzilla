@@ -11,4 +11,5 @@ export interface Rule {
     description: string;
     enabled: boolean;
     blockedWords: string[];
+    timestamp: number;
 }

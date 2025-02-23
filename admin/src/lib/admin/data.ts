@@ -7,6 +7,8 @@ import {
     addDoc,
     deleteDoc,
     getDocs,
+    query,
+    orderBy,
     getDoc,
     doc,
 } from 'firebase/firestore';
@@ -69,6 +71,7 @@ export async function AddNewRule(query: string) {
         name: result.name,
         description: result.description,
         blockedWords: result.blockedWords,
+        timestamp: Date.now(),
     };
 
     const ruleRef = await addDoc(rulesCollection, rulesData);
@@ -89,7 +92,12 @@ export async function DeleteRule(ruleID: string) {
 export async function GetRules() {
     const rules: Rule[] = [];
 
-    const rulesSnapshot = await getDocs(collection(db, 'rules'));
+    const rulesQuery = query(
+        collection(db, 'rules'),
+        orderBy('timestamp', 'asc')
+    );
+
+    const rulesSnapshot = await getDocs(rulesQuery);
 
     rulesSnapshot.forEach((rule: any) => {
         const ruleData = rule.data();
@@ -101,6 +109,7 @@ export async function GetRules() {
             enabled: ruleData.enabled,
             description: ruleData.description,
             blockedWords: ruleData.blockedWords,
+            timestamp: ruleData.timestamp,
         };
         rules.push(ruleModel);
     });
