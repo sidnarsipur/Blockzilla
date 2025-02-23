@@ -23,5 +23,9 @@
 		"matches": ["https://*.reddit.com/*"],
 		"js": ["config.js", "utils.js", "sites/reddit.js"]
 	  }
-	]
-  }
+	],
+	"web_accessible_resources": [{
+        "resources": ["resources/blocked-yt.html"],
+        "matches": ["https://*.youtube.com/*"]
+    }]
+}
