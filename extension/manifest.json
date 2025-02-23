@@ -8,7 +8,7 @@
 	  "storage"
 	],
 	"host_permissions": [
-        "http://localhost:5000/*"
+        "<all_urls>"
     ],
 	"content_scripts": [
 	  {
@@ -22,10 +22,22 @@
 	  {
 		"matches": ["https://*.reddit.com/*"],
 		"js": ["config.js", "utils.js", "sites/reddit.js"]
+	  },
+	  {
+		"matches": ["<all_urls>"],
+		"exclude_matches": [
+			"https://*.youtube.com/*",
+			"https://*.twitter.com/*",
+			"https://*.reddit.com/*"
+		],
+		"js": ["config.js", "utils.js", "sites/allSites.js"]
 	  }
 	],
 	"web_accessible_resources": [{
-        "resources": ["resources/blocked-yt.html"],
-        "matches": ["https://*.youtube.com/*"]
+        "resources": [
+			"resources/blocked-general.html",
+			"resources/blocked-yt.html"
+		],
+        "matches": ["<all_urls>"]
     }]
 }
