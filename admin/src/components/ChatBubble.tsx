@@ -21,7 +21,7 @@ export default function ChatBubble({ chat }: { chat: Chat }) {
             className={`flex flex-col ${chat.isUser ? 'items-end' : 'items-start'}`}
         >
             <div
-                className={`relative max-w-md rounded-3xl px-4 py-3 font-medium text-white md:max-w-lg ${chat.isUser ? 'ml-8 rounded-br-none bg-[#4168f6]' : 'mr-8 rounded-bl-none bg-[#33ae5a]'}`}
+                className={`relative max-w-md rounded-3xl px-4 py-3 font-medium text-white md:max-w-lg ${chat.isUser ? 'ml-8 rounded-br-none bg-[#4168f6]' : 'mr-8 rounded-bl-none bg-[#2ea654]'}`}
             >
                 {chat.message}
             </div>
