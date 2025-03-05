@@ -30,9 +30,10 @@ export default function ChatList({ isPending }: Props) {
                 {chats.map((chat, idx) => (
                     <ChatBubble key={idx} chat={chat} />
                 ))}
+
                 {isPending && (
                     <div className="h-[40px] w-[40px]">
-                        <DotLoader size={30} color="#2ea654" />
+                        <DotLoader size={30} color="#777" />
                     </div>
                 )}
                 <div ref={chatEndRef} />

@@ -24,3 +24,4 @@ dist-ssr
 # Environment File
 .env
 server/key.json
+server/key.json
