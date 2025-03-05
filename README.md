@@ -1,5 +1,7 @@
 # Blockzilla
 
+Made for BrickHacks 2025
+
 The internet isn’t always safe for kids, and parents struggle with complex apps. Blockzilla makes parental control as easy as natural language, like ‘block video games when I'm away from home.’
 
 ## Inspiration
