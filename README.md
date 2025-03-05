@@ -1,8 +1,20 @@
 # Blockzilla
 
-Made for BrickHacks 2025
+Blockzilla makes parental control as easy as natural language, like "block video games when I'm away from home."
 
-The internet isn’t always safe for kids, and parents struggle with complex apps. Blockzilla makes parental control as easy as natural language, like ‘block video games when I'm away from home.’
+Made for [BrickHacks 2025](https://brickhack11.devpost.com/)
+
+## Screenshots
+
+<p align="center">
+  <img src=".github/0.png" width="30%" />
+  <img src=".github/5.png" width="30%" />
+  <img src=".github/4.png" width="30%" />
+  <br />
+  <img src=".github/1.png" width="30%" />
+  <img src=".github/3.png" width="30%" />
+  <img src=".github/2.png" width="30%" />
+</p>
 
 ## Inspiration
 
@@ -51,5 +63,3 @@ Looking forward, we’re excited to enhance Blockzilla further:
 - **Expanded Platform Support:** Extending our filtering capabilities to smartphones, gaming console, and more platforms. 
 - **Customizable Rules:** Allowing more granular control so parents can tailor the system even more precisely to their family’s needs.
 - **User Feedback Integration:** Collaborating with educators and child safety advocates to continuously improve our approach and ensure Blockzilla meets real-world needs.
-
-Blockzilla is just the beginning. With your feedback and continued innovation, we aim to build a safer and more intuitive digital environment for the next generation.
